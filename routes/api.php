@@ -1,18 +1,20 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Models\User;
+use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+// Route for CSRF token setup
+Route::get('sanctum/csrf-cookie', [CsrfCookieController::class, 'show']);
 
+// Authentication routes
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
+// Protected routes
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users', function () {
-        return \App\Models\User::paginate(10);
+        return User::paginate(10);
     });
 });
