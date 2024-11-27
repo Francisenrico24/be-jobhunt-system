@@ -1,6 +1,9 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -11,9 +14,12 @@ class UserController extends Controller
     {
         // Use the paginate method to paginate users, with a default of 10 users per page
         $users = User::paginate(10);
+
         // Return the paginated response
         return response()->json($users);
+
     }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -21,6 +27,7 @@ class UserController extends Controller
     {
         //
     }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -28,6 +35,7 @@ class UserController extends Controller
     {
         //
     }
+
     /**
      * Display the specified resource.
      */
@@ -35,6 +43,7 @@ class UserController extends Controller
     {
         //
     }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -42,6 +51,7 @@ class UserController extends Controller
     {
         //
     }
+
     /**
      * Update the specified resource in storage.
      */
@@ -49,6 +59,7 @@ class UserController extends Controller
     {
         //
     }
+
     /**
      * Remove the specified resource from storage.
      */
