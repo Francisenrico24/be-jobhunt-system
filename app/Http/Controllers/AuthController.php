@@ -16,7 +16,7 @@ class AuthController extends Controller
         ]);
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            $token = $user->createToken->user('auth_token')->plainTextToken;
+            $token = $user->createToken('auth_token')->plainTextToken;
             Log::info('User authenticated', ['user' => $user]);
             return response()->json(['message' => 'Login successful', 'token' => $token], 200);
         }
@@ -27,7 +27,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $user = Auth::guard('sanctum')->user();
-        $user->tokens->user()->delete();
+        $user->tokens()->delete();
         return response()->json(['message' => 'Logged out'], 200);
     }
 }
